@@ -1,53 +1,55 @@
 import argparse
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--list', nargs='+', required=True)
-    for _, value in parser.parse_args()._get_kwargs():
-        if value is not None:
-            someWords = value
-
-S = someWords.pop(0)
-print(S)
-someWords = set(someWords)
-print(someWords)
-
-appropWord = []
+import time
+t0 = time.time()
 
 
-def getApprWords(S, someWords):
+def longestWord(seqWords):
+    print("The Longest subsequence is: {}".format(max(seqWords, key=len)))
 
-    if S.find(" ") != -1:
-        print("Haven't found enything")
-    else:
-        for word_i in someWords:
-            index = 0
-            for i in word_i:
-                index = S.find(i, index)
-                if index == -1:
-                    break
+
+def subsequenceWords(S, D):
+
+    seqWords = []
+
+    for word in D:
+        if len(word) > len(S):
+            continue
+        index = 0
+        for letter in word:
+            if S.find(letter, index) == -1:
+                break
             else:
-                appropWord.append(word_i)
+                index = S.find(letter) + 1
+        else:
+            seqWords.append(word)
+
+    if len(seqWords) == 0:
+        print("There is no any words!")
+    else:
+        longestWord(seqWords)
 
 
-def longestWord(someWords):
-    return max(someWords, key=len)
+def main():
+    parser = argparse.ArgumentParser(description='Process some words')
+    parser.add_argument('string')
+    parser.add_argument('words', nargs='+')
+    args = parser.parse_args()
+    S, D = args.string, set(args.words)
+    subsequenceWords(S, D)
+
+if __name__ == '__main__':
+    main()
 
 
-getApprWords(S, someWords)
 
-
-
-if len(appropWord) == 0:
-    print("There is no any word!")
-else:
-    print('The longest word is {}'.format(longestWord(appropWord)))
+t1 = time.time()
+print('Total time: {}'.format(t1 - t0))
 
 
 # Optimazation
-  # Set's some elements length is longer
+# Set's some elements length is longer
 # Comments
-# Set's element doesn't contain eny spaces
+
 
 
 
