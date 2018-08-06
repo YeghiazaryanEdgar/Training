@@ -34,11 +34,12 @@ def main():
     parser.add_argument('-t', '--Text', nargs='+', help='The Text')
     parser.add_argument('-w', '--Words', nargs='+', help='Some words')
     args = parser.parse_args()
-       # Example: -t word1 word2word3... -w word1 word2word3...
+       # How to ran?  -t word1 fjfjgdlg fg... -w word1 word2 word3...
 
     S, D = ' '.join(args.Text), set(args.Words)
 
-    print(longest_subseqs(S, D))
+    if longest_subseqs(S, D):
+        print(longest_subseqs(S, D))
 
 if __name__ == '__main__':
     main()
