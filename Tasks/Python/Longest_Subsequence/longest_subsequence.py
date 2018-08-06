@@ -1,54 +1,52 @@
+#!/usr/bin/env python3
+
 import argparse
 import time
 t0 = time.time()
 
 
-def longestWord(seqWords):
-    print("The Longest subsequence is: {}".format(max(seqWords, key=len)))
+def is_subseq(S, word):   # S: A string, word: A word from D
+    index = 0
+    for letter in word:
+        if S.find(letter, index) == -1:
+            return 0
+        else:
+            index = S.find(letter, index) + 1
+    else:
+        return 1
 
 
-def subsequenceWords(S, D):
-
+def longest_subseqs(S, D):   # S: A string, D: A list of words
     seqWords = []
 
     for word in D:
         if len(word) > len(S):
             continue
-        index = 0
-        for letter in word:
-            if S.find(letter, index) == -1:
-                break
-            else:
-                index = S.find(letter) + 1
-        else:
+        if is_subseq(S, word):
             seqWords.append(word)
 
-    if len(seqWords) == 0:
-        print("There is no any words!")
-    else:
-        longestWord(seqWords)
-
+    if len(seqWords):  # Finds all longest subsequences with the same length
+        return [w for w in seqWords if len(w) == len(max(seqWords, key=len))]
+    return 0
 
 def main():
-    parser = argparse.ArgumentParser(description='Process some words')
-    parser.add_argument('string')
-    parser.add_argument('words', nargs='+')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-t', '--Text', nargs='+', help='The Text')
+    parser.add_argument('-w', '--Words', nargs='+', help='Some words')
     args = parser.parse_args()
-    S, D = args.string, set(args.words)
-    subsequenceWords(S, D)
+       # Example: -t word1 word2word3... -w word1 word2word3...
+
+    S, D = ' '.join(args.Text), set(args.Words)
+
+    print(longest_subseqs(S, D))
 
 if __name__ == '__main__':
     main()
 
 
-
 t1 = time.time()
 print('Total time: {}'.format(t1 - t0))
 
-
-# Optimazation
-# Set's some elements length is longer
-# Comments
 
 
 
