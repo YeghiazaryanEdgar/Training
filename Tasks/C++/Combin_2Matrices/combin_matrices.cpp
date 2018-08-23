@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-class CombineArrays {
+class CombineMatrices {
 public:
 
-    CombineArrays(double arr[4][4]) {
+    CombineMatrices(double arr[4][4]) {
         for(int i=0; i<4; i++) {
             for(int j=0; j<4; j++) {
                 multArr[i][j] = (arr)[i][j];
@@ -13,9 +13,9 @@ public:
     }
 
 
-    CombineArrays operator + (CombineArrays const &c) {
+    CombineMatrices operator + (CombineMatrices const &c) {
         double cArr[4][4] = {0};
-        CombineArrays comb(cArr);
+        CombineMatrices comb(cArr);
         for(int i=0; i<4; i++) {
             for(int j=0; j<4; j++) {
                 comb.multArr[i][j] = multArr[i][j] + c.multArr[i][j];
@@ -57,9 +57,9 @@ int main() {
     };
 
 
-    CombineArrays arr1(array1);
-    CombineArrays arr2(array2);
-    CombineArrays arr3 =  arr2 + arr1;
+    CombineMatrices arr1(array1);
+    CombineMatrices arr2(array2);
+    CombineMatrices arr3 =  arr2 + arr1;
 
     arr3.showArray();
 
