@@ -25,6 +25,18 @@ public:
         return comb;
     }
 
+    CombineMatrices operator * (CombineMatrices const &c) {
+        double cArr[4][4] = {0};
+        CombineMatrices comb(cArr);
+        for(int i=0; i<4; i++) {
+            for(int j=0; j<4; j++) {
+                comb.multArr[i][j] = multArr[i][j] * c.multArr[i][j];
+            }
+        }
+
+        return comb;
+    }
+
     void showArray() {
         for(int i=0; i<4; i++) {
             for(int j=0; j<4; j++) {
@@ -59,8 +71,12 @@ int main() {
 
     CombineMatrices arr1(array1);
     CombineMatrices arr2(array2);
-    CombineMatrices arr3 =  arr2 + arr1;
 
+    CombineMatrices arr3 =  arr2 + arr1;
+    CombineMatrices arr4 =  arr2 * arr1;
+
+    arr4.showArray();
+    cout<<endl;
     arr3.showArray();
 
     return 0;
