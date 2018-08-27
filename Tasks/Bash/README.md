@@ -1,2 +1,0 @@
-Language: Bash
-   -Tasks, Examples
