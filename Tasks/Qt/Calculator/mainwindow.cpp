@@ -85,15 +85,7 @@ void MainWindow::numbers() {
     arithAfterOpenBracket = true;
 }
 
-void MainWindow::point() {
-    if(theNumber == "") {
-        exp_process += "0";
-    }
-    if(!theNumber.contains(".")) {
-        exp_process += clicked_btn;
-        theNumber += clicked_btn;
-    }
-}
+
 
 void MainWindow::equals() {
 
@@ -290,6 +282,17 @@ void MainWindow::inverse() {
               exp_process += theNumber;
           }
       }
+}
+
+void MainWindow::point() {
+    if(theNumber == "") {
+        exp_process += "0";
+        theNumber += "0";
+    }
+    if(!theNumber.contains(".")) {
+        exp_process += clicked_btn;
+        theNumber += clicked_btn;
+    }
 }
 
 void MainWindow::back() {
