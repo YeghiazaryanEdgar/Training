@@ -4,8 +4,8 @@
 
 int main(int argc, char *argv[]) {
 
-    if(argc == 1) {
-        qDebug() << "Missing for compressed string!";
+    if(argc != 2) {
+        qDebug() << "Wrong number of arguments!";
     } else {
         qDebug() << qUncompress(QByteArray::fromBase64(argv[1]));
     }
