@@ -13,9 +13,9 @@ int main(int argc, char *argv[]) {
       QString db_name = argv[2];
 
 
-      if(!db_name.endsWith(".db")) {
-          db_name += ".db";
-      }
+      if(!db_name.endsWith(".db"))
+                    db_name.append(".db");
+
 
       if(QFile::exists(db_PATH + "/" + db_name)) {
 
