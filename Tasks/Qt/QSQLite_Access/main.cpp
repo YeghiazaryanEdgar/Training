@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
       QString db_name = argv[2];
 
 
-      if(db_name.mid(db_name.length() - 3, 3) != ".db") {
+      if(!db_name.endsWith(".db")) {
           db_name += ".db";
       }
 
